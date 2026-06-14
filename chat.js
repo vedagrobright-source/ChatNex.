@@ -1,121 +1,104 @@
-// User Authentication Check
-const user = JSON.parse(
-    localStorage.getItem("chatnexUser")
-);
+import { database, ref, onValue } from "./firebase.js";
+
+
+// USER CHECK
+const user = JSON.parse(localStorage.getItem("chatnexUser"));
 
 if (!user) {
-
-    window.location.href =
-        "login.html";
+    window.location.href = "login.html";
 }
 
-// User Info
-document.getElementById("userName")
-    .textContent = user.name;
 
-document.getElementById("userPhoto")
-    .src = user.photo;
+// UI SET
+document.getElementById("userName").textContent = user.name;
+document.getElementById("userPhoto").src = user.photo;
 
-// Greeting
-const greeting =
-    document.querySelector(
-        ".user-greeting h3"
-    );
 
+// GREETING
+const greeting = document.querySelector(".user-greeting h3");
 const hour = new Date().getHours();
 
-if (hour < 12) {
+greeting.textContent =
+    hour < 12 ? "Good Morning!"
+    : hour < 18 ? "Good Afternoon!"
+    : "Good Evening!";
 
-    greeting.textContent =
-        "Good Morning!";
 
-} else if (hour < 18) {
+// LOGOUT
+document.getElementById("logoutBtn").onclick = () => {
+    localStorage.removeItem("chatnexUser");
+    window.location.href = "login.html";
+};
 
-    greeting.textContent =
-        "Good Afternoon!";
 
-} else {
+// ================= FIREBASE CHAT LIST =================
 
-    greeting.textContent =
-        "Good Evening!";
-}
+const chatList = document.getElementById("chatList");
 
-// Logout
-document.getElementById("logoutBtn")
-    .addEventListener("click", () => {
+const usersRef = ref(database, "users");
 
-        if (
-            confirm(
-                "Logout from ChatNex?"
-            )
-        ) {
+onValue(usersRef, (snapshot) => {
 
-            localStorage.removeItem(
-                "chatnexUser"
+    chatList.innerHTML = "";
+
+    snapshot.forEach((child) => {
+
+        const u = child.val();
+
+        // skip self
+        if (u.uid === user.uid) return;
+
+        const div = document.createElement("div");
+
+        div.className = "chat-card";
+
+        div.innerHTML = `
+            <div class="avatar">
+                <img src="${u.photo || 'default.png'}" 
+                     style="width:100%;height:100%;border-radius:50%">
+            </div>
+
+            <div class="chat-info">
+                <h4>${u.name}</h4>
+                <p>Tap to start chat</p>
+            </div>
+        `;
+
+        // CLICK FIX (IMPORTANT)
+        div.onclick = () => {
+
+            localStorage.setItem(
+                "selectedUser",
+                JSON.stringify(u)
             );
 
-            window.location.href =
-                "login.html";
-        }
+            window.location.href = "message.html";
+        };
+
+        chatList.appendChild(div);
 
     });
 
-
-// ===== Top Tabs Navigation =====
-
-document.querySelectorAll(
-    ".tab-btn"
-).forEach(button => {
-
-    button.addEventListener(
-        "click",
-
-        () => {
-
-            window.location.href =
-                button.dataset.page;
-
-        }
-
-    );
-
 });
 
 
-// ===== Bottom Navigation =====
-
-document.querySelectorAll(
-    ".nav-item"
-).forEach(item => {
-
-    item.addEventListener(
-        "click",
-
-        () => {
-
-            window.location.href =
-                item.dataset.page;
-
-        }
-
-    );
-
+// TAB NAVIGATION
+document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.onclick = () => {
+        window.location.href = btn.dataset.page;
+    };
 });
 
 
-// ===== Floating Button =====
+// BOTTOM NAV
+document.querySelectorAll(".nav-item").forEach(item => {
+    item.onclick = () => {
+        window.location.href = item.dataset.page;
+    };
+});
 
-document.querySelector(
-    ".fab"
-).addEventListener(
-    "click",
 
-    () => {
-
-        alert(
-            "New Chat feature coming soon 🚀"
-        );
-
-    }
-
-);
+// FAB
+document.querySelector(".fab").onclick = () => {
+    alert("New chat feature coming soon 🚀");
+};

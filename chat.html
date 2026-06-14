@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ChatNex</title>
+
+    <link rel="stylesheet"
+        href="chat.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <div class="phone-frame">
+
+            <!-- Header -->
+
+            <header>
+
+                <div class="header-top">
+
+                    <div class="user-greeting">
+
+                        <img id="userPhoto"
+                            src=""
+                            alt="User">
+
+                        <div>
+
+                            <h3>Good Morning!</h3>
+
+                            <p id="userName">
+                                Loading...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="header-icons">
+
+                        <i class="fas fa-search"></i>
+
+                        <button id="logoutBtn">
+
+                            <i class="fas fa-sign-out-alt"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Top Tabs -->
+
+                <div class="tabs">
+
+                    <button class="tab-btn active"
+                        data-page="chat.html">
+
+                        Chats
+
+                    </button>
+
+                    <button class="tab-btn"
+                        data-page="groups.html">
+
+                        Groups
+
+                    </button>
+
+                    <button class="tab-btn"
+                        data-page="contacts.html">
+
+                        Contacts
+
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- Stories -->
+
+            <section class="stories">
+
+                <div class="story">
+
+                    <div class="story-avatar add">
+
+                        +
+
+                    </div>
+
+                    <span>
+                        My Note
+                    </span>
+
+                </div>
+
+                <div class="story">
+
+                    <div class="story-avatar"></div>
+
+                    <span>
+                        Alice
+                    </span>
+
+                </div>
+
+                <div class="story">
+
+                    <div class="story-avatar"></div>
+
+                    <span>
+                        Mike
+                    </span>
+
+                </div>
+
+                <div class="story">
+
+                    <div class="story-avatar"></div>
+
+                    <span>
+                        Sara
+                    </span>
+
+                </div>
+
+                <div class="story">
+
+                    <div class="story-avatar"></div>
+
+                    <span>
+                        Team
+                    </span>
+
+                </div>
+
+            </section>
+
+            <!-- Chat List -->
+
+            <main class="chat-list">
+
+                <div class="chat-card"
+                    onclick="window.location.href='message.html'">
+
+                    <div class="avatar"></div>
+
+                    <div class="chat-info">
+
+                        <h4>
+                            John Doe
+                        </h4>
+
+                        <p>
+                            Hey! How are you?
+                        </p>
+
+                    </div>
+
+                    <div class="chat-meta">
+
+                        <span>
+                            10:30
+                        </span>
+
+                        <div class="badge">
+
+                            3
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="chat-card"
+                    onclick="window.location.href='message.html'">
+
+                    <div class="avatar"></div>
+
+                    <div class="chat-info">
+
+                        <h4>
+                            Family Group
+                        </h4>
+
+                        <p>
+                            Mom: Dinner at 8 PM
+                        </p>
+
+                    </div>
+
+                    <div class="chat-meta">
+
+                        <span>
+                            09:15
+                        </span>
+
+                        <div class="badge">
+
+                            5
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="chat-card"
+                    onclick="window.location.href='message.html'">
+
+                    <div class="avatar"></div>
+
+                    <div class="chat-info">
+
+                        <h4>
+                            Priya
+                        </h4>
+
+                        <p>
+                            See you at 5 PM 😊
+                        </p>
+
+                    </div>
+
+                    <div class="chat-meta">
+
+                        <span>
+                            11:45
+                        </span>
+
+                        <div class="badge">
+
+                            1
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="chat-card"
+                    onclick="window.location.href='message.html'">
+
+                    <div class="avatar"></div>
+
+                    <div class="chat-info">
+
+                        <h4>
+                            Office Team
+                        </h4>
+
+                        <p>
+                            Meeting starts in 10 mins.
+                        </p>
+
+                    </div>
+
+                    <div class="chat-meta">
+
+                        <span>
+                            08:20
+                        </span>
+
+                        <div class="badge">
+
+                            7
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+            <!-- Floating Action Button -->
+
+            <button class="fab">
+
+                <i class="fas fa-plus"></i>
+
+            </button>
+
+            <!-- Bottom Navigation -->
+
+            <nav>
+
+                <div class="nav-item active"
+                    data-page="chat.html">
+
+                    <i class="fas fa-comment"></i>
+
+                    <span>
+                        Chats
+                    </span>
+
+                </div>
+
+                <div class="nav-item"
+                    data-page="calls.html">
+
+                    <i class="fas fa-phone"></i>
+
+                    <span>
+                        Calls
+                    </span>
+
+                </div>
+
+                <div class="nav-item"
+                    data-page="explore.html">
+
+                    <i class="fas fa-compass"></i>
+
+                    <span>
+                        Explore
+                    </span>
+
+                </div>
+
+                <div class="nav-item"
+                    data-page="profile.html">
+
+                    <i class="fas fa-user"></i>
+
+                    <span>
+                        You
+                    </span>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+    <script src="chat.js"></script>
+
+</body>
+
+</html>

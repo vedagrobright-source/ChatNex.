@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChatNex Contacts</title>
+
+    <link rel="stylesheet" href="contacts.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <div class="phone-frame">
+
+        <!-- HEADER -->
+        <header>
+
+            <div class="header-top">
+
+                <div class="title-section">
+
+                    <h2>Contacts</h2>
+
+                    <p>Start new conversations</p>
+
+                </div>
+
+                <button id="logoutBtn">
+
+                    <i class="fas fa-sign-out-alt"></i>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- SEARCH -->
+        <div class="search-box">
+
+            <input type="text" id="searchInput" placeholder="Search contacts...">
+
+        </div>
+
+
+        <!-- CONTACT LIST (REAL FIREBASE USERS WILL LOAD HERE) -->
+        <main class="contact-list" id="contactList">
+
+        </main>
+
+
+        <!-- FLOATING BUTTON -->
+        <button class="fab">
+
+            <i class="fas fa-user-plus"></i>
+
+        </button>
+
+
+        <!-- BOTTOM NAV -->
+        <nav>
+
+            <div class="nav-item" data-page="chat.html">
+
+                <i class="fas fa-comment"></i>
+
+                <span>Chats</span>
+
+            </div>
+
+
+            <div class="nav-item" data-page="groups.html">
+
+                <i class="fas fa-users"></i>
+
+                <span>Groups</span>
+
+            </div>
+
+
+            <div class="nav-item active">
+
+                <i class="fas fa-address-book"></i>
+
+                <span>Contacts</span>
+
+            </div>
+
+
+            <div class="nav-item" data-page="profile.html">
+
+                <i class="fas fa-user"></i>
+
+                <span>You</span>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</div>
+
+
+<!-- IMPORTANT FIX: MODULE SCRIPT -->
+<script type="module" src="contacts.js"></script>
+
+</body>
+
+</html>

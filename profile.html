@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ChatNex Profile</title>
+
+    <link rel="stylesheet"
+        href="profile.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <div class="phone-frame">
+
+            <!-- Header -->
+
+            <header>
+
+                <h2>Your Profile</h2>
+
+                <p>Manage your ChatNex account</p>
+
+            </header>
+
+            <!-- Profile Card -->
+
+            <div class="profile-card">
+
+                <img id="profilePhoto"
+                    src=""
+                    alt="Profile">
+
+                <h3 id="profileName">
+
+                    Loading...
+
+                </h3>
+
+                <p id="profileEmail">
+
+                    Loading...
+
+                </p>
+
+            </div>
+
+            <!-- Settings -->
+
+            <div class="settings">
+
+                <div class="setting-item">
+
+                    <div>
+
+                        <i class="fas fa-user-edit"></i>
+
+                        Edit Profile
+
+                    </div>
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </div>
+
+                <div class="setting-item">
+
+                    <div>
+
+                        <i class="fas fa-bell"></i>
+
+                        Notifications
+
+                    </div>
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </div>
+
+                <div class="setting-item">
+
+                    <div>
+
+                        <i class="fas fa-lock"></i>
+
+                        Privacy
+
+                    </div>
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </div>
+
+                <div class="setting-item">
+
+                    <div>
+
+                        <i class="fas fa-circle-info"></i>
+
+                        About ChatNex
+
+                    </div>
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </div>
+
+            </div>
+
+            <!-- Logout -->
+
+            <div class="logout-container">
+
+                <button id="logoutBtn">
+
+                    <i class="fas fa-sign-out-alt"></i>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+            <!-- Bottom Navigation -->
+
+            <nav>
+
+                <div class="nav-item"
+                    data-page="chat.html">
+
+                    <i class="fas fa-comment"></i>
+
+                    <span>Chats</span>
+
+                </div>
+
+                <div class="nav-item"
+                    data-page="groups.html">
+
+                    <i class="fas fa-users"></i>
+
+                    <span>Groups</span>
+
+                </div>
+
+                <div class="nav-item"
+                    data-page="contacts.html">
+
+                    <i class="fas fa-address-book"></i>
+
+                    <span>Contacts</span>
+
+                </div>
+
+                <div class="nav-item active">
+
+                    <i class="fas fa-user"></i>
+
+                    <span>You</span>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+    <script src="profile.js"></script>
+
+</body>
+
+</html>

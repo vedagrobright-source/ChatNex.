@@ -1,0 +1,161 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#4f46e5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* Floating bubbles */
+.bubbles span{
+    position:absolute;
+    bottom:-100px;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    animation:float 15s linear infinite;
+}
+
+.bubbles span:nth-child(1){
+    left:10%;
+    width:80px;
+    height:80px;
+    animation-duration:18s;
+}
+
+.bubbles span:nth-child(2){
+    left:30%;
+    animation-duration:12s;
+}
+
+.bubbles span:nth-child(3){
+    left:50%;
+    width:70px;
+    height:70px;
+    animation-duration:16s;
+}
+
+.bubbles span:nth-child(4){
+    left:70%;
+    animation-duration:10s;
+}
+
+.bubbles span:nth-child(5){
+    left:90%;
+    width:90px;
+    height:90px;
+    animation-duration:20s;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.splash-container{
+    text-align:center;
+    z-index:2;
+    animation:fadeIn 1.5s ease;
+}
+
+.logo{
+    width:140px;
+    height:140px;
+    margin:auto;
+    border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:70px;
+
+    box-shadow:
+        0 0 40px rgba(79,70,229,0.5);
+
+    animation:pulse 2s infinite;
+}
+
+h1{
+    margin-top:25px;
+    font-size:48px;
+    font-weight:700;
+}
+
+p{
+    margin-top:10px;
+    opacity:0.85;
+    font-size:18px;
+}
+
+.progress-container{
+    width:250px;
+    height:8px;
+    background:rgba(255,255,255,0.2);
+
+    border-radius:10px;
+
+    margin:35px auto;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0;
+
+    background:white;
+
+    animation:loading 3s linear forwards;
+}
+
+@keyframes loading{
+    to{
+        width:100%;
+    }
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}

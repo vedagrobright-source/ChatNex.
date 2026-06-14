@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChatNex Message</title>
+
+    <link rel="stylesheet" href="message.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <div class="phone-frame">
+
+        <!-- HEADER -->
+        <header>
+
+            <div class="user-info">
+
+                <img id="chatUserImg" src="" alt="">
+
+                <div>
+
+                    <h4 id="chatUserName">User</h4>
+
+                    <p id="chatUserStatus">online</p>
+
+                </div>
+
+            </div>
+
+            <button id="backBtn">
+
+                <i class="fas fa-arrow-left"></i>
+
+            </button>
+
+        </header>
+
+
+        <!-- CHAT AREA -->
+        <main id="chatBox" class="chat-box">
+
+        </main>
+
+
+        <!-- INPUT BOX -->
+        <div class="chat-input">
+
+            <input type="text" id="messageInput" placeholder="Type a message...">
+
+            <button id="sendBtn">
+
+                <i class="fas fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="message.js" type="module"></script>
+
+</body>
+
+</html>

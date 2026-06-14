@@ -1,29 +1,34 @@
-// Firebase App
+// ================= FIREBASE APP =================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
-// Firebase Authentication
+
+// ================= AUTH =================
 import {
     getAuth,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-// Firebase Realtime Database
+
+// ================= DATABASE =================
 import {
     getDatabase,
     ref,
     set,
     push,
-    onValue
+    onValue,
+    update
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
-// Firebase Analytics
+
+// ================= ANALYTICS =================
 import {
     getAnalytics
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
 
 
-// Firebase Configuration
-
+// ================= CONFIG =================
 const firebaseConfig = {
 
     apiKey: "AIzaSyAKAFyDSK1V24kXsuzSpk2imrUbrrcY2_U",
@@ -45,48 +50,33 @@ const firebaseConfig = {
 };
 
 
-// Initialize Firebase
-
+// ================= INIT =================
 const app = initializeApp(firebaseConfig);
-
-
-// Analytics
-
 const analytics = getAnalytics(app);
 
 
-// Authentication
-
+// ================= SERVICES =================
 const auth = getAuth(app);
-
 const provider = new GoogleAuthProvider();
-
-
-// Realtime Database
-
 const database = getDatabase(app);
 
 
-// Export Everything
-
+// ================= EXPORT =================
 export {
 
     app,
-
     analytics,
 
     auth,
-
     provider,
+    signInWithPopup,
+    signOut,
 
     database,
 
     ref,
-
     set,
-
     push,
-
-    onValue
-
+    onValue,
+    update
 };

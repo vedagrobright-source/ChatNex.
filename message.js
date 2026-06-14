@@ -2,66 +2,71 @@ import {
     database,
     ref,
     push,
-    onValue
+    onValue,
+    update
 } from "./firebase.js";
 
 
-// Current user
+// ---------------- USER DATA ----------------
 const currentUser = JSON.parse(
     localStorage.getItem("chatnexUser")
 );
 
-// Selected user
 const selectedUser = JSON.parse(
     localStorage.getItem("selectedUser")
 );
 
-// Redirect check
+// safety check
 if (!currentUser || !selectedUser) {
     window.location.href = "contacts.html";
 }
 
 
-// UI elements
+// ---------------- UI ELEMENTS ----------------
 const chatBox = document.getElementById("chatBox");
 const input = document.getElementById("messageInput");
 const sendBtn = document.getElementById("sendBtn");
 
 
-// Set header data
+// ---------------- HEADER SET ----------------
 document.getElementById("chatUserName").innerText =
-    selectedUser.name;
+    selectedUser.name || "User";
 
 document.getElementById("chatUserImg").src =
-    selectedUser.photo;
+    selectedUser.photo || "";
 
 document.getElementById("chatUserStatus").innerText =
-    selectedUser.status;
+    selectedUser.status === "online"
+        ? "🟢 Online"
+        : "⚪ Offline";
 
 
-// Chat ID (unique for 2 users)
+// ---------------- CHAT ID ----------------
 const chatId =
     currentUser.uid > selectedUser.uid
         ? currentUser.uid + "_" + selectedUser.uid
         : selectedUser.uid + "_" + currentUser.uid;
 
 
-// Send message to Firebase
+// ---------------- SEND MESSAGE ----------------
 function sendMessage(text) {
+
+    if (!text || text.trim() === "") return;
 
     push(
         ref(database, "chats/" + chatId),
         {
             sender: currentUser.uid,
             receiver: selectedUser.uid,
-            text: text,
-            time: Date.now()
+            text: text.trim(),
+            time: Date.now(),
+            seen: false
         }
     );
 }
 
 
-// Load messages in real-time
+// ---------------- LOAD MESSAGES ----------------
 onValue(
     ref(database, "chats/" + chatId),
     (snapshot) => {
@@ -76,13 +81,38 @@ onValue(
 
             div.classList.add("msg");
 
+            // sender/receiver
             if (msg.sender === currentUser.uid) {
                 div.classList.add("sent");
             } else {
                 div.classList.add("received");
             }
 
-            div.innerText = msg.text;
+            // message text
+            const textDiv = document.createElement("div");
+            textDiv.innerText = msg.text;
+
+            // time
+            const timeDiv = document.createElement("div");
+            timeDiv.style.fontSize = "10px";
+            timeDiv.style.marginTop = "5px";
+            timeDiv.style.opacity = "0.7";
+
+            const time = new Date(msg.time).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+            let tick = "";
+
+            if (msg.sender === currentUser.uid) {
+                tick = msg.seen ? " ✔✔" : " ✔";
+            }
+
+            timeDiv.innerText = time + tick;
+
+            div.appendChild(textDiv);
+            div.appendChild(timeDiv);
 
             chatBox.appendChild(div);
 
@@ -94,12 +124,47 @@ onValue(
 );
 
 
-// Send button click
+// ---------------- MARK AS SEEN ----------------
+function markSeen(snapshot) {
+
+    snapshot.forEach((msgSnap) => {
+
+        const msg = msgSnap.val();
+
+        if (
+            msg.receiver === currentUser.uid &&
+            msg.seen !== true
+        ) {
+
+            update(
+                ref(database, "chats/" + chatId + "/" + msgSnap.key),
+                {
+                    seen: true
+                }
+            );
+
+        }
+
+    });
+
+}
+
+
+// ---------------- REALTIME + SEEN ----------------
+onValue(
+    ref(database, "chats/" + chatId),
+    (snapshot) => {
+
+        markSeen(snapshot);
+
+    }
+);
+
+
+// ---------------- SEND BUTTON ----------------
 sendBtn.addEventListener("click", () => {
 
-    const text = input.value.trim();
-
-    if (!text) return;
+    const text = input.value;
 
     sendMessage(text);
 
@@ -108,19 +173,17 @@ sendBtn.addEventListener("click", () => {
 });
 
 
-// Enter key support
+// ---------------- ENTER KEY ----------------
 input.addEventListener("keypress", (e) => {
 
     if (e.key === "Enter") {
-
         sendBtn.click();
-
     }
-
 });
 
 
-// Back button
-document.getElementById("backBtn").addEventListener("click", () => {
+// ---------------- BACK BUTTON ----------------
+document.getElementById("backBtn")
+.addEventListener("click", () => {
     window.location.href = "contacts.html";
 });
